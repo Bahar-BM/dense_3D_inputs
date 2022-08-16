@@ -22,7 +22,7 @@ However, if you use TF v2.9 to convert the above-mentioned keras model, you will
 
 
 ## Building and converting the model
-* `model_files` folder contains a very simple model containing a `Dense` node and its corresponding tflite versions (FP16). One version is obtained using TF 2.9 and the other one is obtained using TF 2.4.
+* `model_files` folder contains a very simple model containing a `Dense` node and its corresponding tflite versions (FP16). One version is obtained using TF 2.9 and the other one is obtained using TF 2.3.
   * You can also use `generate_dummy_model.py` to build the model and use `convert_model.py` to convert it to tflite.
 
 ## tflite_inference tool 
