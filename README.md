@@ -2,11 +2,11 @@
 
 This repo contains scripts and a tool to reproduce the openCL delegate issue with `Dense` layers when they are fed by 3D inputs. 
 
-Converting models in which there is at least one `Dense` layer fed by a 3D input should be done using TF version < 2.4. Otherwise, the obtained TFLite model will crash with the OpenCL delegate with this error message:
+Converting models in which there is at least one `Dense` layer fed by a 3D input should be done using older versions of TensorFlow (e.g. v2.3 or v2.4). Otherwise, the obtained TFLite model will crash with the OpenCL delegate with this error message:
 
 `ERROR: TfLiteGpuDelegate Init: FULLY_CONNECTED: Amount of input data should match weights width`
 
-OpenCL delegate needs the inputs to the fully-connected layers to be in 2D format. It means that 3D inputs (e.g. 1x23x1024) need to be reshaped into 2D format (e.g. 23x1024) before entering the fully-connected layers. The tflite converter in TF version < 2.4 adds extra Reshape layers before and after the fully-connected layers to take care of this issue. However, the new versions (e.g. TF v2.9) do not add these Reshape layers and it leads to a crash with the OpenCL delegate.
+OpenCL delegate needs the inputs to the fully-connected layers to be in 2D format. It means that 3D inputs (e.g. 1x23x1024) need to be reshaped into 2D format (e.g. 23x1024) before entering the fully-connected layers. The tflite converter in TF version <= 2.4 (we have tested 2.4 and 2.3) adds extra Reshape layers before and after the fully-connected layers to take care of this issue. However, the new versions (e.g. TF v2.9) do not add these Reshape layers and it leads to a crash with the OpenCL delegate.
 
 Here is a very simple example. Consider the following keras model:
 
