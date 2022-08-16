@@ -1,4 +1,4 @@
-# Test with the 3D inputs to the Dense layers
+# openCL crash in models converted by the newer versions of TF (e.g. TF 2.9)
 
 This repo contains scripts and a tool to reproduce the openCL delegate issue with `Dense` layers when they are fed by 3D inputs. 
 
